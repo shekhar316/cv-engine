@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <%- include('partials/head') %>
+</head>
+
+<body>
+
+<%- include('partials/navbar') %>
+
+<br><br>
+
+
+<div class="container contain mx-auto">
+    <div class="container p-5">
+        <h3 class="mx-auto text-center"><b>New Notification</b></h3>
+        <hr><br>
+        <form id="addNotice">
+            <div class="mb-3">
+                <label class="form-label"><b>Notice Title</b></label>
+                <input type="text" class="form-control" id="title">
+                <div class="form-text">Please provide a suitable title for notice.</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label"><b>Notice Body</b></label>
+                <div id="editor" class="bg-white">
+                </div>
+            </div>
+            <br>
+            <div>
+                <button class="btn btn-warning" id="submit" onclick="addNotice(event);">Post Notification</button>
+            </div>
+        </form>
+    </div>
+
+
+</div>
+
+    <%- include('partials/footer') %>
+
+        <script>
+            var quill = new Quill('#editor', {
+                theme: 'snow'
+            });
+
+            function addNotice(event) {
+                event.preventDefault();
+
+
+                if(!document.getElementById("title").value){
+                    alert("Please enter a valid title.")
+                }else if(!quill.root.innerHTML){
+                    alert("Please enter a valid description.")
+                }else{
+                    var data = {
+                    title: document.getElementById("title").value,
+                    content: quill.root.innerHTML
+                }
+
+                $.ajax({
+                    url: '/notice/create',
+                    type: 'post',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        if (result.code == 200) {
+                            Swal.fire({
+                                title: result.title,
+                                text: result.content,
+                                icon: "success",
+                                button: "View Notices"
+                            }).then(function () {
+                                window.location = "/notice/all";
+                            });
+                        } else {
+                            Swal.fire({
+                                title: result.title,
+                                text: result.content,
+                                icon: "error",
+                                button: "Try Again"
+                            }).then(function () {
+                                window.location = "/notice/create";
+                            });
+                        }
+                    },
+                    data: JSON.stringify(data)
+                });
+                }
+            };
+        </script>
+
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <%- include('partials/head') %>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+</head>
+
+<body>
+
+<%- include('partials/navbar') %>
+
+<div class="container">
+    <br>
+    <h3 class="text-center">Archives Library</h3>
+    <br>
+    <table class="table table-striped table-bordered" id="myTable">
+        <thead>
+        <tr class="bg-blue text-white">
+            <th>Archive</th>
+            <th>Link</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% if(bookData.length!=0){ var i = 1; bookData.forEach(function(data){ %>
+        <tr>
+            <td>
+                <%=data.name %>
+            </td>
+            <td>
+                <a href="<%=data.link %>">Click Here</a>
+            </td>
+        </tr>
+        <% i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="100%">No Data Found</td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+</div>
+
+<%- include('partials/footer') %>
+
+
+</body>
+
+</html>

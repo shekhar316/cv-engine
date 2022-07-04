@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <%- include('partials/head') %>
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+</head>
+
+<body>
+
+<%- include('partials/navbar') %>
+
+<div class="container">
+    <br>
+    <h3 class="text-center">Manage Job</h3>
+    <br>
+    <div class="col-md-6 mx-auto contain">
+        <form action="/admin/updateDetails" method="post" encType="multipart/form-data">
+            <br>
+            <label class="form-label"><b>Update Deatils</b></label>
+            <br><br>
+            <div class="row">
+                <label class="form-label">Job ID: </label>
+                <input type="text" class="form-control" name="id" value="<%=id%>" required="true" readonly>
+            </div>
+            <br>
+            <div class="row">
+                <label class="form-label">Last Date to Apply: </label>
+                <input type="date" class="form-control" name="last_date" value="<%=last_date%>" required="true" >
+            </div>
+            <br>
+            <div class="row">
+                <label class="form-label">Min Xth Marks: </label>
+                <input type="text" class="form-control" name="xth" value="<%=xth%>" required="true">
+            </div>
+            <br>
+            <div class="row">
+                <label class="form-label">Min XIIth Marks:</label>
+                <input type="text" class="form-control" name="xii" value="<%=xii%>" required="true">
+            </div>
+            <br>
+            <div class="row">
+                <label class="form-label">Min Current Marks:</label>
+                <input type="text" class="form-control" name="curr" value="<%=curr%>" required="true">
+            </div>
+            <br>
+            <p>Enter user details carefully.</p>
+            <br>
+            <button type="submit" class="btn btn-success">Update Deatils</button>
+        </form>
+        <br>
+    </div>
+
+    <!--    FORM-->
+</div>
+
+<%- include('partials/footer') %>
+
+
+</body>
+
+</html>
+

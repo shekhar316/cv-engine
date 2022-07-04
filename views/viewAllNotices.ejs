@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <%- include('partials/head') %>
+</head>
+
+<body>
+
+<%- include('partials/navbar') %>
+
+<br><br>
+
+
+<div class="container contain mx-auto">
+  <br><br>
+
+  <div class="container p-5">
+    <h3 class="mx-auto text-center"><b>Notifications</b></h3>
+    <hr><br>
+    <%if(locals.role > 1){ %>
+    <a href="/notice/create" class="btn btn-warning">Post New Notification</a>
+    <br><br>
+    <% } %> 
+    <table class="table table-bordered" id="myTable">
+        <thead>
+            <tr class="bg-blue text-white">
+                <th class="w-75">Title</th>
+                <th>Date Posted</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if(notices.length!=0){ var i=1; notices.forEach(function(notice){ %>
+                <tr>
+                    
+                    <td>
+                        <a href="/notice/view/<%=notice.id%>">
+                            <%=notice.title %>
+                        </a>
+                    </td>
+                    <td>
+                        <%=notice.created_at.toLocaleString('en-IN') %>
+                    </td>
+                </tr>
+                <% i++; }) %>
+                    <% } else{ %>
+                        <tr>
+                            <td colspan="100%">No Notices Found</td>
+                        </tr>
+                        <% } %>
+        </tbody>
+    </table>
+</div>
+</div>
+<br><br>
+<%- include('partials/footer') %>
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+
+
+</body>
+
+</html>

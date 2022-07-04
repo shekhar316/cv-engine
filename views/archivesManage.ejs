@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <%- include('partials/head') %>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+</head>
+
+<body>
+
+<%- include('partials/navbar') %>
+
+<div class="container">
+    <br>
+    <h3 class="text-center">Manage Archives Library</h3>
+    <br>
+    <a class="btn btn-success" href="/archives/add">Add New Archive</a>
+    <br><br>
+    <table class="table table-striped table-bordered" id="myTable">
+        <thead>
+        <tr class="bg-blue text-white">
+            <th>Archive</th>
+            <th>Link</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% if(bookData.length!=0){ var i = 1; bookData.forEach(function(data){ %>
+        <tr>
+            <td>
+                <%=data.name %>
+            </td>
+            <td>
+                <a href="<%=data.link %>">Click Here</a>
+            </td>
+            <td>
+                <a class="btn-sm btn-primary" href="/archives/update/<%=data.id %>">Update</a>
+            </td>
+            <td>
+                <a class="btn-sm btn-danger" href="/archives/delete/<%=data.id %>">Delete</a>
+            </td>
+        </tr>
+        <% i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="100%">No Data Found</td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+</div>
+
+<%- include('partials/footer') %>
+
+
+</body>
+
+</html>

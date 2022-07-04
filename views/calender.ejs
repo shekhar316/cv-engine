@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <%- include('partials/head') %>
+</head>
+
+<body>
+
+    <%- include('partials/navbar') %>
+
+        <br><br>
+
+
+        <div class="container contain mx-auto">
+            <br>
+            <h2 class="text-center">Recent Activities</h2>
+            <hr>
+            <br><br>
+
+            <div id="caleandar">
+            </div>
+        </div>
+
+        <div class="container">
+
+        </div>
+        <br><br>
+
+
+        <%- include('partials/footer') %>
+
+            <script>
+                $(document).ready(function () {
+                    $.ajax({
+                        url: '/job/lastDates',
+                        type: 'post',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        // data: JSON.stringify({}),
+                        success: function (result) {
+                            if (result) {
+                                alert("hey")
+                            } else {
+                                Swal.fire({
+                                    title: "Sorry!",
+                                    text: "Failed to load calender!",
+                                    icon: "error",
+                                    button: "Try Again"
+                                }).then(function () {
+                                    window.location = "/admin/addjob";
+                                });
+                            }
+                        },
+                    });
+                });
+            </script>
+
+</body>
+
+</html>

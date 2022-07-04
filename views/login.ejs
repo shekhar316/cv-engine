@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <%- include('partials/head') %>
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+</head>
+
+<body>
+
+<%- include('partials/navbar') %>
+
+<div class="container">
+    <br><br>
+    <h3 class="text-center">Login Dashboard</h3>
+    <br>
+    <div class="col-md-6 mx-auto contain">
+        <form action="signin" method="post" encType="multipart/form-data">
+            <br>
+            <label class="form-label"><b>Enter your login details</b></label>
+            <br><br>
+                <div class="row">
+                    <label class="form-label">Email </label>
+                    <input type="email" class="form-control" name="email" placeholder="example@domain.com" required="true">
+                </div>
+            <br>
+                <div class="row">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" placeholder="Password" required="true">
+                </div>
+            <br>
+            <p>Enter your details carefully.</p>
+            <br>
+            <button type="submit" class="btn btn-success">Login</button>
+        </form>
+        <br>
+    </div>
+
+    <!--    FORM-->
+</div>
+<br>
+<%- include('partials/footer') %>
+<script>
+    <% if(alert == "yes"){ %>
+    Swal.fire({
+        title: '<%=title%>',
+        text: '<%=text%>',
+        icon: '<%=icon%>',
+        confirmButtonText: "Okay",
+    })
+    <%}%>
+</script>
+
+</body>
+
+</html>
+

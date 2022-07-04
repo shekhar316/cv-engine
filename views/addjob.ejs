@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <%- include('partials/head') %>
+
+        <script>
+            $(document).ready(function () {
+                $('#myTable').DataTable();
+            });
+        </script>
+</head>
+
+<body>
+
+    <%- include('partials/navbar') %>
+
+        <div class="container">
+            <br><br>
+            <h3 class="text-center">Add Job Opportunity</h3>
+            <br>
+            <div class="col-md-10 mx-auto contain">
+                <form>
+                    <label class="form-label"><b>Job Details</b></label>
+                    <br><br>
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label">Title</label>
+                            <input type="text" class="form-control" name="title" id="title" placeholder="Title"
+                                required="true">
+                        </div>
+                        <div class="col">
+                            <label class="form-label">Company</label>
+                            <input type="text" class="form-control" name="company" id="company" placeholder="Company"
+                                required="true">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="mb-3">
+                        <label class="form-label">Job Description</label>
+                        <div id="editor" class="bg-white">
+                        </div>
+                    </div>
+                    <br>
+                    <label class="form-label"><b>Eligibility Details</b></label><br>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label">Last date to apply</label>
+                            <input type="date" class="form-control" name="date" id="ldate" required="true">
+                        </div>
+                        <div class="col">
+                            <label class="form-label">Minimum Degree Marks</label>
+                            <input type="number" class="form-control" id="min_curr" required="true">
+                        </div>
+                        <div class="col">
+                            <label class="form-label">Minimum Xth Marks</label>
+                            <input type="number" class="form-control" id="min_xth" required="true">
+                        </div>
+                        <div class="col">
+                            <label class="form-label">Minimum XIIth Marks</label>
+                            <input type="number" class="form-control" id="min_xiith" required="true">
+                        </div>
+                    </div>
+                    <br>
+                    <!-- <label class="form-label"><b>Application Details</b></label><br> -->
+                    <br>
+                    <!-- <div class="row">
+                        <div class="col">
+                            <label class="form-label">Application Link to Apply</label>
+                            <input type="text" class="form-control" name="link" id="link" required="true">
+                        </div>
+                    </div> -->
+                    <br>
+                    <button type="submit" onclick="addJob(event);" class="btn btn-warning">Add Opportunity</button>
+                </form>
+            </div>
+
+            <!--    FORM-->
+        </div>
+
+        <%- include('partials/footer') %>
+
+            <script>
+                var quill = new Quill('#editor', {
+                    theme: 'snow'
+                });
+
+                function addJob(event) {
+                    event.preventDefault();
+
+                    if(!document.getElementById("title").value){
+                        alert("Please enter a valid title.")
+                    }else if(!document.getElementById("company").value){
+                        alert("Please enter a valid company name.")
+                    }else if(!document.getElementById("ldate").value){
+                        alert("Please enter a valid last date.")
+                    }else{
+                        var data = {
+                        title: document.getElementById("title").value,
+                        description: quill.root.innerHTML,
+                        last_date: document.getElementById("ldate").value,
+                        min_curr: document.getElementById("min_curr").value,
+                        min_xth: document.getElementById("min_xth").value,
+                        min_xiith: document.getElementById("min_xiith").value,
+                        company: document.getElementById("company").value,
+                        // url: document.getElementById("link").value
+                    }
+
+                    $.ajax({
+                        url: '/admin/addjob',
+                        type: 'post',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        data: JSON.stringify(data),
+                        success: function (result) {
+                            if (result.code == 200) {
+                                Swal.fire({
+                                    title: "Success",
+                                    text: "Job is added succesfully.",
+                                    icon: "success",
+                                    button: "View Jobs"
+                                }).then(function () {
+                                    window.location = "/job/view";
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: "Sorry!",
+                                    text: "Something went worng!",
+                                    icon: "error",
+                                    button: "Try Again"
+                                }).then(function () {
+                                    window.location = "/admin/addjob";
+                                });
+                            }
+                        },
+                    });
+                    }
+                    
+                };
+            </script>
+
+</body>
+
+</html>

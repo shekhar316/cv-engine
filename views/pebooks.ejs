@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <%- include('partials/head') %>
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+</head>
+
+<body>
+
+<%- include('partials/navbar') %>
+
+<div class="container">
+    <br>
+    <h3 class="text-center">Ebook Store</h3>
+    <br>
+    <table class="table table-striped table-bordered" id="myTable">
+        <thead>
+        <tr class="table-dark">
+            <th>Book</th>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>Edition</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% if(ebookData.length!=0){ var i = 1; ebookData.forEach(function(data){ %>
+        <tr>
+            <td>
+                <img src="/ebookstore/<%=data.identifier %>.jpg" class="bookImgThumb" alt="book-image"/>
+            </td>
+            <td>
+                <%=data.pebookID %>
+            </td>
+            <td>
+                <a href="/store/viewbyid/<%=data.pebookID %>"><%=data.Title %></a>
+            </td>
+            <td>
+                <%=data.Author %>
+            </td>
+            <td>
+                <%=data.Publisher %>
+            </td>
+            <td>
+                <%=data.Edition %>
+            </td>
+            <td>
+                <%=data.Price %>
+            </td>
+        </tr>
+        <% i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="100%">No Data Found</td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+</div>
+
+<%- include('partials/footer') %>
+
+
+</body>
+
+</html>

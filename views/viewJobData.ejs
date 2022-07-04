@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <%- include('partials/head') %>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+</head>
+
+<body>
+
+<%- include('partials/navbar') %>
+
+<div class="container">
+    <br><br>
+    <h3 class="text-center">Your Applications</h3>
+<!--    <br><br>-->
+<!--    <h3 class="text-center">Library Transactions</h3>-->
+    <br><br>
+    <button class="btn btn-success" onclick="exportTableToExcel('myTable', 'Data')">Export Data</button>
+    <br><br>
+    <table class="table table-bordered" id="myTable">
+        <thead>
+        <tr class="table-dark">
+            <th class="col-md-1">Name</th>
+            <th class="col-md-1">Email</th>
+            <th class="col-md-1">Phone</th>
+            <th class="col-md-2">Application Date</th>
+            <th class="col-md-1">10th Marks</th>
+            <th class="col-md-1">12th Marks</th>
+            <th class="col-md-1">Current Marks</th>
+            <th class="col-md-3">Resume</th>
+            <th class="col-md-1">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% if(jobData.length!=0){ var i = 1; jobData.forEach(function(data){ %>
+        <tr <%if(data.status == -1){%>class="table-danger" <%}%><%if(data.status==1){%>class="table-success" <%}%>>
+            <td class="col-md-1"><%= data.first_name%> <%= data.last_name %> </td>
+            <td class="col-md-1"><%= data.email %> </td>
+            <td class="col-md-1"><%= data.phone %> </td>
+            <td class="col-md-2"><%= new Date(data.applyDate).toLocaleString() %></td>
+            <td class="col-md-1"><%= data.xth %> </td>
+            <td class="col-md-1"><%= data.xii %> </td>
+            <td class="col-md-1"><%= data.curr %> </td>
+            <td class="col-md-3"><%= data.resume %> </td>
+            <td class="col-md-1"><%= data.status %> </td>
+
+        </tr>
+        <% i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="100%">No Data Found</td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+</div>
+
+<%- include('partials/footer') %>
+
+<script type="text/javascript" src="/script/export.js"></script>
+
+</body>
+
+</html>

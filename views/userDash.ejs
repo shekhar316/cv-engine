@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <%- include('partials/head') %>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+</head>
+
+<body>
+
+<%- include('partials/navbar') %>
+
+<div class="container">
+    <br><br>
+    <h3 class="text-center">Your Applications</h3>
+<!--    <br><br>-->
+<!--    <h3 class="text-center">Library Transactions</h3>-->
+    <br><br>
+    <table class="table table-bordered" id="myTable">
+        <thead>
+        <tr class="table-dark">
+            <th>Application ID</th>
+            <th>Job ID</th>
+            <th>Application Date</th>
+            <th>Current Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% if(userData.length!=0){ var i = 1; userData.forEach(function(data){ %>
+        <tr <%if(data.status == "Rejected"){%>class="table-danger" <%}%><%if(data.status=='Selected'){%>class="table-success" <%}%>>
+            <td>
+                <%=data.id %>
+            </td>
+            <td>
+                <a href="/job/viewbyid/<%=data.jobID %>"><%=data.jobID %></a>
+            </td>
+            <td>
+                <%=new Date(data.applyDate).toLocaleString() %>
+            </td>
+            <td>
+                <%=data.status %>
+            </td>
+
+        </tr>
+        <% i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="100%">No Data Found</td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+</div>
+<br><br><br><br><br><br>
+<%- include('partials/footer') %>
+
+
+</body>
+
+</html>

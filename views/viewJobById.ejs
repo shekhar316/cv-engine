@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <%- include('partials/head') %>
+
+</head>
+
+<body>
+
+    <%- include('partials/navbar') %>
+
+        <div class="container mx-auto">
+            <br /><br>
+            <h3 class="text-center">
+                <%=Data[0].title %>
+            </h3>
+            <br /><br />
+            <div class="row p-5 bookinforow mx-auto">
+                <div class="col-md-10 bookinfosec mx-auto">
+                    <p><b>Job Title: </b>
+                        <%=Data[0].title%>
+                    </p>
+                    <p><b>Company: </b>
+                        <%=Data[0].company%>
+                    </p>
+                    <p><b>Last Date to Apply:</b>
+                        <%=new Date(Data[0].last_date).toLocaleString()%>
+                    </p>
+                    <p><b>Minimum 10th Marks: </b>
+                        <%=Data[0].min_xth%>
+                    </p>
+                    <p><b>Minimum 12th Marks: </b>
+                        <%=Data[0].min_xii%>
+                    </p>
+                    <p><b>Minimum Current Marks: </b>
+                        <%=Data[0].min_curr%>
+                    </p>
+                    <p><b>Job Description: </b> </p>
+                    <br>
+                    <div>
+                        <%-Data[0].description %>
+                    </div>
+                    <br />
+                    <%if(locals.role> 1){ %>
+                       
+  
+                        <a href="/admin/viewjobdata/<%=Data[0].jobID%>" class="btn btn-warning">View Application Data</a>
+                        <% } else{ %>
+                            <button onclick="check(event);" class="btn btn-success">Apply for This Job</button>
+                            <% } %>
+                </div>
+            </div>
+        
+
+            <br><br>
+        </div>
+
+        <br /><br />
+        <%- include('partials/footer') %>
+
+            <script>
+                function check(event) {
+                    event.preventDefault();
+
+
+                    var data = {
+                        xth: "<%=Data[0].min_xth%>",
+                        xiith: "<%=Data[0].min_xii%>",
+                        curr: "<%=Data[0].min_curr%>",
+                        last_date: "<%=Data[0].last_date%>"
+                    }
+
+                    $.ajax({
+                        url: '/user/check',
+                        type: 'post',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        data: JSON.stringify(data),
+                        success: function (result) {
+                            if (result.code == 1600) {
+                                Swal.fire({
+                                    title: "Oops!",
+                                    text: "You are not eligible for this job.",
+                                    icon: "error",
+                                    button: "View Other Jobs"
+                                }).then(function () {
+                                    window.location = "/job/view";
+                                });
+                            } else if(result.code == 1000){
+                                Swal.fire({
+                                    title: "Congrats!",
+                                    text: "You are eligible for this job.",
+                                    icon: "success",
+                                    button: "Apply"
+                                }).then(function () {
+                                    window.location = "/user/apply/<%=Data[0].jobID%>";
+                                });
+                            }else if(result.code == 1800){
+                                Swal.fire({
+                                    title: "Sorry!",
+                                    text: "Application Time is over!",
+                                    icon: "error",
+                                    button: "Try Again"
+                                }).then(function () {
+                                    window.location = "/job/view";
+                                });
+                            }else{
+                                Swal.fire({
+                                    title: "Sorry!",
+                                    text: "Something went worng!",
+                                    icon: "error",
+                                    button: "Try Again"
+                                }).then(function () {
+                                    window.location = "/job/view";
+                                });
+                            }
+                        },
+                    });
+                };
+            </script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<div class="row m-0 p-0">
+    <div class="col-sm-3 text-center flexCenter">
+        <img src="/img/logo-removebg.png" width="100%" alt="logo">
+    </div>
+    <div class="col-sm-6 text-center pt-3 d-none d-md-block d-lg-block d-xl-block">
+        <h5>GEU, Dehradun</h5>
+        <h2 style="font-weight: 600 !important;">CV Engine</h2>
+        <h5><b>Training and Placement Department</b></h5>
+    </div>
+    <div class="col-sm-3 text-center pt-2 flexCenter">
+        <img src="/img/geufullbg.png" class="d-none d-md-block d-lg-block d-xl-block" width="80%" alt="geulogo">
+    </div>
+</div>
+
+<br>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-blue">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="/img/icon.png" width="30" height="30" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Services
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/notice/all">Notice Board</a></li>
+                        <li><a class="dropdown-item" href="/job/view">Search Job Opportunities</a></li>
+                        <li><a class="dropdown-item" href="/user/view">My Job Applications</a></li>
+                        <li><a class="dropdown-item" href="/user/profile">My profile</a></li>
+                        <li><a class="dropdown-item" href="/archives/view">Archives Library</a></li>
+                        <li><a class="dropdown-item" href="http://45.116.207.204/moodle/my/">Learning Portal</a></li>
+                        <li><a class="dropdown-item" href="https://forms.gle/j6AhRHkdTzVjzgdt5">Request Certificate</a></li>
+                    </ul>
+                </li>
+                <%if(locals.role > 1){ %>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Admin Services
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/notice/all">Notice Board</a></li>
+                        
+                        <li><a class="dropdown-item" href="/job/view">Search Job Opportunities</a></li>
+                        <li><a class="dropdown-item" href="/admin/addjob">Add Job Opportunity</a></li>
+                        <li><a class="dropdown-item" href="/archives/manage">Archives Library</a></li>
+                        <li><a class="dropdown-item" href="http://45.116.207.204/moodle/my/">Learning Portal</a></li>
+                        <li><a class="dropdown-item" href="https://docs.google.com/forms/d/1Hkbhf4cnLibw-wryaG9gfTecaylXEhIpAUijFVBhGko/edit#responses">Certificate Requests</a></li>
+                    </ul>
+                </li>
+                <% } %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About Us</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <%if(!locals.email){ %>
+                    <li class="nav-item" id="out">
+                        <a class="nav-link" aria-current="page" href="/auth/register">Register</a>
+                    </li>
+                    <li class="nav-item" id="out">
+                        <a class="nav-link" href="/auth/login">Login</a>
+                    </li>
+                <% } else { %>
+                    <li class="nav-item" id="in">
+                        <a class="nav-link" href="/auth/logout">Logout</a>
+                    </li>
+                    <% } %>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+

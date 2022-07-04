@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <%- include('partials/head') %>
+
+        <script>
+            $(document).ready(function () {
+                $('#myTable').DataTable();
+            });
+        </script>
+</head>
+
+<body>
+
+    <%- include('partials/navbar') %>
+
+        <div class="container">
+            <br><br>
+            <h3 class="text-center">Job Opportunities</h3>
+            <br>
+            <br>
+            <table class="table table-bordered" id="myTable">
+                <thead>
+                    <tr class="bg-blue text-white">
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Title</th>
+                        <th class="text-center">Company</th>
+                        <th class="text-center">Last Date to Apply</th>
+                        <th class="text-center">Created At</th>
+                        <th class="text-center">View</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if(jobData.length!=0){ var i=1; jobData.forEach(function(data){ %>
+                        <tr>
+                            <td>
+                                <%=data.jobID %>
+                            </td>
+                            <td>
+                                <%=data.title %>
+                            </td>
+                            <td>
+                                <%=data.company %>
+                            </td>
+                            <td class="text-center">
+                                <%=new Date(data.last_date).toLocaleString() %>
+                            </td>
+                            <td class="text-center">
+                                <%=new Date(data.created_at).toLocaleString() %>
+                            </td>
+                            <td class="text-center">
+                                <a class="btn-sm btn-warning" href="/job/viewbyid/<%=data.jobID %>">View Opportunity</a>
+                            </td>
+
+                        </tr>
+                        <% i++; }) %>
+                            <% } else{ %>
+                                <tr>
+                                    <td colspan="100%">No Jobs Found</td>
+                                </tr>
+                                <% } %>
+                </tbody>
+            </table>
+        </div>
+        <br><br>
+        <%- include('partials/footer') %>
+
+</body>
+
+</html>

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <%- include('partials/head') %>
+</head>
+
+<body>
+
+<%- include('partials/navbar') %>
+
+<div id="carouselExampleIndicators" class="carousel slide .carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="/img/banner1.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="/img/banner2.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="/img/banner3.png" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<br><br>
+<div class="container about p-5">
+    <br>
+    <h2 class="mt-2 mb-5"><span class="underline">About Us</span></h2>
+    <p class="textJustify"> In 1993 a young man with just twenty nine thousand and loads of determination embarked
+        on a mission to transform the higher education landscape of the Doon valley. Graphic Era Deemed to be
+        University is the culmination of the vision of its founder, Prof (Dr) Kamal Ghanshala, who had the dream to
+        change the destiny of thousands of youth, through quality and holistic education and his vision took a
+        concrete shape in the form of Graphic Era Institute in 1996.
+
+       
+
+        <br><br> Graphic Era (Deemed to be University) has been conferred All-India NIRF Rank 75 in the Engineering
+        Category, thus being accorded as the highest-ranked Engineering University in Uttarakhand, after IIT
+        Roorkee, in the MHRD NIRF (National Institutional Ranking Framework) Rankings in Septemeber 2021. The
+        University has also been awarded All India Rank 98 in the University Category and All India Rank 64 in
+        Management Category, establishing GEU as the highest-ranked university in Uttarakhand amongst all Government
+        and Private universities in the state.
+
+        <br><br> GEU stands proud as the only university in Uttarakhand recognized as one among the top 100
+        Universities of the country, as an abode of learning and excellence, surpassing all parameters of assessment
+        like teaching, learning, research, graduation outcome, outreach, industrial presence and more for Indian
+        Institutions of higher education.
+
+    </p>
+</div>
+<br><br>
+<div class="container bgGrey p-5">
+    <div class="row">
+        <h2 class="text-center"><span class="underline">From the Director's Desk</span></h2><br><br><br>
+        <div class="col-md-4 text-center">
+            <img src="/img/kamalsir.jpg" class="shadow" alt="">
+            <p class="mt-3"><b>Prof. Kamal Ghanshala <br> President, Graphic Era Group of Institutions <br> Ph.D,
+                    Computer Science. M. Tech, B.E.</b></p>
+        </div>
+        <div class="col-md-8">
+            <cite>"A Visionary who dreamt and realized his dreams"</cite>
+            <p class="textJustify">
+                <br> For students the experience of being at Graphic Era University is rich and diverse. Our
+                academic
+                programs are of high quality, geared towards industry requirements. They are competitive and
+                industry
+                driven, ranging from engineering, science, technology, business, management, commerce, hospitality
+                to
+                humanities and social sciences and our initiative expands to all round knowledge. Our curriculum and
+                pedagogy includes certain ideological inputs, behavioral content and team building aspects, for
+                enhancement of hard and soft skills amongst the students. University also offers study-abroad
+                programs
+                and internship programs in leading organizations of the country and international exposure at
+                premier
+                universities around the world.
+
+                <br><br> Our aim is to provide the best possible environment for teaching, learning and research to
+                the
+                diverse pool of young talent. The kind of resourcefulness and creativity that has become the
+                hallmark of
+                Graphic Era University gives me immense pride in this institution, in the people who learn and work
+                here, and in those who support our mission.
+            </p>
+        </div>
+    </div>
+</div>
+<br><br>
+<div class="container-fluid bgLight p-5">
+
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            <h4><span class="underline">Other Links</span></h4><br>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href="https://www.geu.ac.in/" target="_blank"><i
+                            class="fa-solid fa-building-columns"></i> Official Website</a></li>
+                <li class="list-group-item"><a href="https://www.geu.ac.in/content/geu/en/Notices-Updates.html" target="_blank"><i
+                            class="fa-solid fa-circle-info"></i> Notices</a></li>
+                <li class="list-group-item"><a href="https://www.geu.ac.in/content/geu/en/events.html" target="_blank"><i
+                            class="fa-solid fa-flag"></i> Events</a></li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h4><span class="underline">Quick Links
+                </span></h4><br>
+            <ul class="list-group list-group-flush">
+
+                <li class="list-group-item"><a href="/auth/login" target="_blank"><i class="fa-solid fa-graduation-cap"></i>User Login</a>
+                </li> 
+                <li class="list-group-item"><a href="/auth/register" target="_blank"><i class="fa-solid fa-building"></i> User Registration</a></li>
+     
+                <li class="list-group-item"><a href="http://45.116.207.204/moodle/my/" target="_blank"><i class="fa-solid fa-screwdriver-wrench"></i> Student
+                        Learning Portal</a></li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h4><span class="underline">Quick Connect</span></h4><br>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><i class="fa-solid fa-phone"></i> +91-135-2643421, 2642727</li>
+                <li class="list-group-item"><i class="fa-solid fa-at"></i> <a
+                        href="mailto:enquiry@geu.ac.in" target="_blank">enquiry@geu.ac.in</a></li>
+                <li class="list-group-item"><i class="fa-solid fa-map-location-dot"></i> Graphic Era (Deemed to be
+                    University) <br>
+                    Bell Road, Clement Town Dehradun, <br>Uttarakhand</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<br><br><br>
+<div class="container text-center">
+
+    <h2><span class="underline">Our Past Recruiters</span></h2>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col"> <img class="zoom" src="/img/company/adobe.jpg" alt=""> </div>
+        <div class="col"> <img class="zoom" src="/img/company/amazon.jpg" alt=""> </div>
+        <div class="col"> <img class="zoom" src="/img/company/Deloitte.jpg" alt=""> </div>
+        <div class="col"> <img class="zoom" src="/img/company/hdfc.jpg" alt=""> </div>
+
+    </div>
+    <div class="row">
+        <div class="col"> <img class="zoom" src="/img/company/hsbc.jpg" alt=""> </div>
+        <div class="col"> <img class="zoom" src="/img/company/IBM.jpg" alt=""> </div>
+        <div class="col"> <img class="zoom" src="/img/company/uno_minda.jpg" alt=""> </div>
+        <div class="col"> <img class="zoom" src="/img/company/sap.jpg" alt=""> </div>
+    </div>
+    <div class="row">
+        <div class="col"> <img class="zoom" src="/img/company/YAMAHA.jpg" alt=""> </div>
+        <div class="col"> <img class="zoom" src="/img/company/TATA.jpg" alt=""> </div>
+        <div class="col"> <img class="zoom" src="/img/company/wipro.jpg" alt=""> </div>
+        <div class="col"> <img class="zoom" src="/img/company/ITC.jpg" alt=""> </div>
+    </div>
+</div>
+
+<br><br>
+
+
+
+
+<%- include('partials/footer') %>
+
+<script>
+    <% if(alert == "yes"){ %>
+    Swal.fire({
+        title: '<%=title%>',
+        text: '<%=text%>',
+        icon: '<%=icon%>',
+        confirmButtonText: "Okay",
+    })
+    <%}%>
+</script>
+
+</body>
+
+</html>

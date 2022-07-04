@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <%- include('partials/head') %>
+
+</head>
+
+<body>
+
+<%- include('partials/navbar') %>
+
+<div class="container">
+    <br>
+    <h3 class="text-center">Add New Archive</h3>
+    <br>
+    <div class="col-md-6 mx-auto contain">
+        <form action="add" method="post" encType="multipart/form-data">
+            <br>
+            <label class="form-label"><b>Enter archive details</b></label>
+            <br><br>
+            <div class="row">
+                <label class="form-label">Name </label>
+                <input type="text" class="form-control" name="name" placeholder="Name" required="true">
+            </div>
+            <br>
+            <div class="row">
+                <label class="form-label">Cloud Link</label>
+                <input type="text" class="form-control" name="link" placeholder="https://some-domain.com" required="true">
+            </div>
+            <br>
+            <p>Enter details carefully.</p>
+            <br>
+            <button type="submit" class="btn btn-success">Add New</button>
+        </form>
+        <br>
+    </div>
+
+    <!--    FORM-->
+</div>
+
+<%- include('partials/footer') %>
+
+</body>
+
+</html>
+
