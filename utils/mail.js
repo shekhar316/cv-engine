@@ -24,12 +24,16 @@ exports.fromEmail = from;
 
 exports.transport = transporter;
 
-exports.sendMail = (mailOptions) => {
-    transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-            console.log(error);
-        } else {
-            console.log('Email sent: ' + info.response);
-        }
-    });
+exports.sendMail = async(mailOptions) => {
+    return new Promise((resolve,reject)=>{
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+                console.log(error);
+                resolve(false); 
+            } else {
+                console.log('Email sent: ' + info.response);
+                resolve(true); 
+            }
+        });
+    })
 }

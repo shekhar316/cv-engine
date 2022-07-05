@@ -17,10 +17,35 @@
 <%- include('partials/navbar') %>
 
 <div class="container">
-    <br>
+    <br><br>
     <h3 class="text-center">User Registration</h3>
-    <br>
-    <div class="col-md-10 mx-auto contain">
+    <br><br>
+            <div class="col-md-10 mx-auto contain" style="display: none;" id="bulk">
+                
+                <h3 class="mx-auto text-center"><b>Add Students From CSV</b></h3>
+                <hr><br>
+                <form id="addNotice" method="post" action="/admin/addBulkStudents" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="form-label"><b>Upload CSV File</b></label>
+                        <input type="file" class="form-control" id="file" name="data">
+                        <br>
+                        <div class="form-text">Please provide a suitable CSV file. <br>  It may take a while to upload the student's data.</div>
+                    </div>
+                    <br>
+                    <div>
+                        <input type="submit" value="Add Students" onclick="return confirm('Are you sure you want to add these students?');" class="form-control btn btn-success">
+                    </div>
+                </form>
+            </div>
+
+        
+    <div class="col-md-10 mx-auto contain" id="single">
+        <button id="bullbtn" class="btn btn-warning" onclick='$("#bulk").show();$("#single").hide();'>Add Students From CSV</button>
+        <br><br>
+        <a href="https://forms.gle/BemKrewcutEE9Ess9" target="_blank"> Student Registration Form</a>
+        <br>
+        <a href="https://docs.google.com/spreadsheets/d/1JBn0Ig98iu_WDOJiid8V1DUo0zL2YRQZ-Ym3HKO3mJs/edit?usp=sharing" target="_blank"> CSV Demo File</a>
+        <br><br>
         <form action="signup" method="post" encType="multipart/form-data">
             <label class="form-label"><b>Personal Details</b></label>
             <br><br>
@@ -119,7 +144,7 @@
 
 <!--    FORM-->
 </div>
-
+<br>
 <%- include('partials/footer') %>
 <script>
     <% if(alert == "yes"){ %>

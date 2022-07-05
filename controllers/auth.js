@@ -30,46 +30,13 @@ exports.isAdmin = (req, res, next) => {
 
 
 
-exports.register = (req, res) => {
-    res.render("register", {alert: "no"})
-}
+
+
 
 exports.login = (req, res) => {
     res.render("login", {alert: "no"})
 }
 
-exports.signup = async (req, res) => {
-    const {fname, lname, password, dob, gender, email, phone, city, address, state, pin, xth, xii, curr, resume} = req.body;
-    var encrypass = await bcrypt.hash(password, saltRounds);
-
-    var sql = `INSERT INTO users (first_name, last_name, password, gender, dob, email, phone, address, city, state, pin, role, xth, xii, curr, resume) VALUES ('${fname}', '${lname}', '${encrypass}', '${gender}', '${dob}', '${email}', '${phone}', '${address}', '${city}', '${state}', '${pin}', 0, '${xth}', '${xii}', '${curr}', '${resume}')`;
-    db.con.query(sql, function (err, result) {
-        if(err){
-            console.log(err);
-            if(err.code == 'ER_DUP_ENTRY'){
-                res.render("register", {
-                    alert: "yes",
-                    title: "Email Already Exists...",
-                    text: "Please use a different email address.",
-                    icon: "error",})
-            }else{
-                res.render("register", {
-                    alert: "yes",
-                    title: "Sorry..",
-                    text: "Something went wrong.",
-                    icon: "error",})
-            }
-        }else {
-            console.log("1 record inserted");
-            res.render("login", {
-                alert: "yes",
-                title: "Registration Successful.",
-                text: "Please login to continue.",
-                icon: "success"})
-        }
-
-    });
-};
 
 exports.signin = async (req, res) => {
     const {password, email} = req.body;

@@ -8,14 +8,16 @@
 
 <body>
 
-<%- include('partials/navbar') %>
+    <%- include('partials/navbar') %>
 
-<br><br>
+        <br><br>
 
 
-<div class="container contain mx-auto">
+        <div class="container contain mx-auto">
             <div class="container p-5">
-                <h3 class="mx-auto text-center"><b><%=notice.title %> </b></h3>
+                <h3 class="mx-auto text-center"><b>
+                        <%=notice.title %>
+                    </b></h3>
                 <hr><br>
                 <h6><b>Created At: <%=notice.created_at %> </b></h6>
                 <h6><b>Updated At: <%=notice.updated_at %></b> </h6>
@@ -31,71 +33,77 @@
                 </div>
 
                 <br>
-                <%if(locals.role > 1){ %>
-                <button id="up1" class="btn btn-warning m-4" onclick="updateInitiate();">Update Notice</button>
-                <button id="up2" style="display: none;" class="btn btn-warning m-4" onclick="update();">Update</button>
-                <button id="del" class="btn btn-danger" onclick="deleteNotice();">Delete Notice</button>
-                <% } %> 
+                <%if(locals.role> 1){ %>
+                    <button id="up1" class="btn btn-warning m-4" onclick="updateInitiate();">Update Notice</button>
+                    <button id="up2" style="display: none;" class="btn btn-warning m-4"
+                        onclick="update();">Update</button>
+                    <button id="del" class="btn btn-danger" onclick="deleteNotice();">Delete Notice</button>
+                    <% } %>
             </div>
-</div>
-<br><br>
-            <script>
-                function updateInitiate(){
-                    var quill = new Quill('#editor', {
-                        theme: 'snow'
-                    });
-                    $("#up1").hide();
-                    $("#up2").show();
-                    $("#del").hide();
-                    $("#newt").show();
-                    $("#title").val("<%=notice.title %>")
+        </div>
+        <br><br>
+        <script>
+            function updateInitiate() {
+                var quill = new Quill('#editor', {
+                    theme: 'snow'
+                });
+                $("#up1").hide();
+                $("#up2").show();
+                $("#del").hide();
+                $("#newt").show();
+                $("#title").val("<%=notice.title %>")
+            }
+
+            function update() {
+                var con = confirm('Are you sure you want to update this item?');
+                if(con){
+                    const data = {
+                    id: '<%=notice.id %>',
+                    title: document.getElementById("title").value,
+                    content: document.querySelector(".ql-editor").innerHTML
                 }
+                // console.log(data)
+                $.ajax({
+                    url: '/notice/update',
+                    type: 'post',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        if (result.code == 200) {
+                            Swal.fire({
+                                title: result.title,
+                                text: result.content,
+                                icon: "success",
+                                button: "View"
+                            }).then(function () {
+                                window.location = "/notice/view/" + '<%=notice.id %>';
+                            });
+                        } else {
+                            Swal.fire({
+                                title: result.title,
+                                text: result.content,
+                                icon: "error",
+                                button: "Try Again"
+                            }).then(function () {
+                                window.location = "/notice/view/" + '<%=notice.id %>';
+                            });
+                        }
+                    },
+                    data: JSON.stringify(data)
+                });
+                }
+            }
 
-                function update(){
 
+            function deleteNotice() {
+
+                var con = confirm('Are you sure you want to delete this item?');
+
+                if (con) {
                     const data = {
                         id: '<%=notice.id %>',
-                        title: document.getElementById("title").value,
-                        content: document.querySelector(".ql-editor").innerHTML
                     }
-                    // console.log(data)
-                    $.ajax({
-                            url: '/notice/update',
-                            type: 'post',
-                            dataType: 'json',
-                            contentType: 'application/json',
-                            success: function (result) {
-                                if (result.code == 200) {
-                                    Swal.fire({
-                                        title: result.title,
-                                        text: result.content,
-                                        icon: "success",
-                                        button: "View"
-                                    }).then(function () {
-                                        window.location = "/notice/view/" + '<%=notice.id %>';
-                                    });
-                                } else {
-                                    Swal.fire({
-                                        title: result.title,
-                                        text: result.content,
-                                        icon: "error",
-                                        button: "Try Again"
-                                    }).then(function () {
-                                        window.location = "/notice/view/" + '<%=notice.id %>';
-                                    });
-                                }
-                            },
-                            data: JSON.stringify(data)
-                        });
-                }
 
-
-                function deleteNotice(){
-
-                    const data = {
-                        id: '<%=notice.id %>',
-                    }
-             
                     $.ajax({
                         url: '/notice/delete',
                         type: 'post',
@@ -125,13 +133,14 @@
                         data: JSON.stringify(data)
                     });
                 }
+            }
 
-            </script>
+        </script>
 
 
-<%- include('partials/footer') %>
+        <%- include('partials/footer') %>
 
-<script src="mapjs.min.js"></script>
+            <script src="mapjs.min.js"></script>
 
 </body>
 
